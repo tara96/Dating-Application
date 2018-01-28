@@ -1,0 +1,133 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.lead {
+    color: black;
+    font-weight: bolder;
+}
+
+.navbar-brand {
+    font-size: x-large;
+}
+
+.serviceBox {
+  box-sizing:border-box;
+  float:left;
+  width:100%;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 10px #bdbdbd;
+
+}
+
+.serviceBox:first { margin-left:4%; }
+.serviceBox1, .serviceBox2, .serviceBox3, .serviceBox4 {
+    float:left;
+    width:32%;
+    padding: 20px;
+    margin: 5px;
+}
+
+.box {
+    margin:10px;
+    padding:10px;
+    height: 250px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #bdbdbd;
+}
+
+.Knapparna {
+    padding-top: 10Px;
+    padding-bottom: 20px;
+    padding-left: 0px;
+}
+
+.Send{
+    float: left;
+    padding: 10px;
+}
+
+.Match Button:hover{ 
+   color: white; 
+   background-color:red;
+   
+    
+}
+
+.Match{
+    float: left;
+    padding: 10px;
+    font-weight:bolder;
+}
+
+.serviceBoxx {
+  float:left;
+  width:100%;
+  height: 250px;
+  padding-top:30px;
+}
+
+
+.row {
+    width:80%;
+    padding: 20px;
+}
+
+.serviceBox4, .serviceBox5, .serviceBox6, .serviceBox7, .serviceBox8 {
+    float:left;
+    width:18%;
+    padding-left: 0px;
+    margin: 10px;
+}
+
+.profilePicture{
+    margin: 5px;
+}
+
+.Fcontainer {
+    box-sizing: border-box;
+    float: left;
+    width: 100%;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #bdbdbd;
+}
+
+.frame {
+    margin:10px;
+    padding:10px;
+    height: 250px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #bdbdbd;
+}
+
+.Friends, .Settings {
+    float:left;
+    width:40%;
+    padding-left: 0px;
+    margin: 10px;
+}

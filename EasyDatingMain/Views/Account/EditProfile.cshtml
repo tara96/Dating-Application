@@ -1,0 +1,61 @@
+﻿@model EasyDatingMain.Models.UserAccount
+
+@{
+    ViewBag.Title = "EditProfile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="columnmain">
+
+    @using (Html.BeginForm())
+    {
+        <div class="head"><h2>Update Profile</h2></div>
+        @Html.DisplayNameFor(model => model.Username)
+        @Html.TextBoxFor(model => model.Username, new { @Value = Model.Username })
+        @Html.ValidationMessageFor(model => model.Username)<br /><br />
+
+        @Html.DisplayNameFor(model => model.Description)
+        @Html.TextBoxFor(model => model.Description, new { @Value = Model.Description })
+        @Html.ValidationMessageFor(model => model.Description)<br /><br />
+
+        @Html.DisplayNameFor(model => model.age)
+        @Html.TextBoxFor(model => model.age, new { @Value = Model.age })
+        @Html.ValidationMessageFor(model => model.age)<br /><br />
+
+        @Html.DisplayNameFor(model => model.Visible)
+        @Html.CheckBoxFor(model => model.Visible, false)<br /><br />
+
+        <div class="head"><h4>Change Password / Confirm Changes</h4></div>
+        @Html.DisplayNameFor(model => model.Password)
+        @Html.TextBoxFor(model => model.Password)
+        @Html.ValidationMessageFor(model => model.Password)<br /><br />
+
+        @Html.DisplayNameFor(model => model.Confirm_Password)
+        @Html.TextBoxFor(model => model.Confirm_Password)
+        @Html.ValidationMessageFor(model => model.Confirm_Password)<br /><br />
+
+        <input type="submit" value="Save Changes" />
+    }
+
+
+</div>
+
+<div class="columnmain">
+
+    <div class="head"><h4>Change profile picture</h4></div>
+    <img src="~/picture/@Model.ProfilePicture" alt="Profilbild" /><br /><br />
+
+    @using (Html.BeginForm("FileUpload", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <input type="file" name="file" />
+        <input type="submit" value="Upload picture" />
+    }
+
+
+
+</div>
+
+
+

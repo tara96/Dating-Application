@@ -1,0 +1,130 @@
+﻿@model EasyDatingMain.Models.UserAccount
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Scripts.Render("~/bundles/jquery")
+
+
+<div class="serviceBox">
+    <div class="serviceBox1">
+        <div class="box">
+            <h4>Profile picture</h4>
+            <div class="ProfilePicture">
+                <img src="~/Picture/@Model.ProfilePicture" alt="Profilbild" />
+            </div>
+            <p>Name: @Model.Name</p>
+            <p>Age: @Model.age</p>
+        </div>
+    </div>
+    <div class="serviceBox2">
+        <div class="box">
+            <h4>Description</h4>
+            <p>
+                @Model.Description
+            </p>
+        </div>
+    </div>
+
+</div>
+
+<!--Knapparna-->
+<div class="Knapparna">
+    <div class="Send">
+        <button type="button" class="btn btn-default">Send Friend request</button>
+    </div>
+    <div class="Match">
+        <a href="@Url.Action("EditProfile", "Account", @Model)">Update your Profile</a>
+    </div>
+</div>
+
+<!-- Här börjar inläggsdelen -->
+<div class="Postart">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-10"></div>
+    </div><!-- /grid row -->
+    <!-- new bootstrap 3 col's are replaced with span -->
+    <!-- like instead of col-md-2 now its span2 -->
+    <!-- Segment: body data: Feed element updated-->
+    <!-- File: index.php -->
+    <!-- Segment: body data: Feed element updated-->
+    <div class="row">
+        <div class="col-md-2">
+            <img src="http://www.gravatar.com/avatar/
+            5e8288077a04f460b1a0af197226673d"
+                 class="img-circle" width="100%" />
+        </div>
+
+        <div class="col-md-10">
+            <p><textarea id="message"></textarea></p>
+            <p id="msgbtn"> <input type="button" id="sendbtn" value="Skicka" /></p>
+            <div id="errormessage">
+            </div>
+            <div class="head">Meddelanden </div>
+            <div id="messages"></div>
+        </div>
+
+        @*<div class="col-md-10">
+                <textarea rows='3' cols="60"></textarea>
+                <button class="btn " type="button" style="float:right">
+                    post
+                </button>
+            </div>*@
+    </div>
+
+    <!-- File: index.php -->
+    <!-- Segment: body data: Feed element updated -->
+    @*<div class="row">
+                <div class="col-md-2">
+                    <img src="http://www.gravatar.com/avatar/
+                    5e8288077a04f460b1a0af197226673d"
+                         class="img-circle" width="100%" />
+                </div>
+                <div class="col-md-10">
+                    <div>
+                        <b>Krishna Teja</b>
+                    </div>
+                    <div>This is a sample feed</div>
+                    <div class="muted"><small>12 min ago</small></div>
+                </div>
+            </div>
+        </div>*@
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //sökvägen är antagligen fel..
+        $.get('/API/Message/GetPosts?username=@Model.Username', function (posts) {
+            $.each(posts, function () {
+                $('#messages').prepend('<p><b>' + this.Sender + '</b>: ' + this.Content + '</p>');
+            });
+        });
+    });
+    
+                    $('#sendbtn').click(function () {
+                    $('#errormessage').html("");
+                    var receiver = "@Model.Username";
+                    var sender = "@System.Web.HttpContext.Current.User.Identity.Name";
+                    var content = $("#message").val();
+                    if (content.length > 0 && content.length < 1001) {
+                        var MessageModel = { 'Receiver': receiver, 'Sender': sender, 'Content': content };
+                        $.ajax({
+                            url: '@Url.Action("SendPost", "Message")',
+                            type: 'POST',
+                            data: JSON.stringify(MessageModel),
+                            dataType: 'JSON',
+                            contentType: 'application/json; charset=utf-8',
+                            success: function (data) {
+                                location.reload();
+                            },
+                            error: function () {
+                                alert("Någonting gick fel. Försök gärna igen!");
+                            }
+                        });
+                    } else {
+                        $('#errormessage').append("Ett meddelande ska innehålla minst 1 och högst 1000 tecken");
+                        return;
+                    }
+                });          
+        </script>
